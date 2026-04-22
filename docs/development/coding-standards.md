@@ -192,3 +192,10 @@ protected touch()
 - Não devem conter regras de negócio
 - Devem usar mappers para conversão de dados
 ```
+
+## Policies
+
+- Toda validação deve ser feita via Policy
+- Policies não devem acessar banco ou HTTP
+- Policies devem retornar `Result`
+- Policies devem ser puras (sem efeitos colaterais)

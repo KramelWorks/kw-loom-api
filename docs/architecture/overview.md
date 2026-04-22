@@ -43,3 +43,25 @@ Responsáveis por converter:
 - Persistence → Domain
 
 Evita acoplamento entre camadas.
+
+## 🧠 Policies
+
+A aplicação utiliza o padrão de **Policies** para encapsular regras de validação e segurança.
+
+### Objetivo
+
+- Evitar lógica de validação em entidades
+- Centralizar regras configuráveis
+- Permitir evolução sem impacto no domínio
+
+### Policies atuais
+
+- PasswordPolicy → valida regras de senha
+- EmailPolicy → valida domínio de e-mail
+
+### Fluxo
+
+Use Case → Policy → Entity
+
+A Policy decide se uma operação é válida antes de afetar o domínio.
+```

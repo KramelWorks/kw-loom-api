@@ -132,3 +132,25 @@ Uso de uma entidade base para controle de estado.
 
 - Repositórios recebem objetos `where`
 - Métodos não dependem de `id` diretamente
+## 📌 Policies
+
+### Motivação
+
+Separar regras de validação do domínio para:
+
+- reduzir acoplamento
+- permitir configuração via ambiente
+- facilitar testes
+
+### Decisão
+
+Criar policies independentes para:
+
+- senha
+- e-mail
+
+### Consequências
+
+- maior flexibilidade
+- regras reutilizáveis
+- leve aumento de complexidade estrutural
