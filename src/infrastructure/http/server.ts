@@ -6,6 +6,6 @@ export function startHttpServer() {
   const PORT = envConfig.http.port
 
   app.listen(PORT, () =>
-    console.log(chalk.gray(`Running on https://localhos:${PORT}`)),
+    console.log(chalk.gray(`Running on http://localhost:${PORT}`)),
   )
 }
