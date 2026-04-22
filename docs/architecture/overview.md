@@ -1,14 +1,24 @@
-## Estrutura
+# 🏗️ Arquitetura
 
-- Bootstrap → inicialização
-- Server → sobe HTTP
-- App → middlewares
-- Config → env
-- Utils → padrões
+## 📌 Visão Geral
 
-## Express
+A aplicação segue uma arquitetura em camadas com separação clara de responsabilidades:
 
-- JSON parsing
-- CORS
+- **Domain** → regras de negócio
+- **Application** → orquestração (use cases)
+- **Infrastructure** → detalhes externos (HTTP, banco, etc.)
 
-Sem regra de negócio
+---
+
+## 🔄 Fluxo da aplicação
+
+```text
+HTTP Request
+   ↓
+Controller
+   ↓
+Use Case
+   ↓
+Domain
+   ↓
+Response (AppResult)
