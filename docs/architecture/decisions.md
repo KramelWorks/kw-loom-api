@@ -120,3 +120,15 @@ Uso de uma entidade base para controle de estado.
 
 - Entidades com estado devem estender `BaseEntity`
 - Alterações de estado são controladas internamente
+## Uso de `where` ao invés de `id`
+
+### Motivação
+
+- Evitar acoplamento com identificadores fixos
+- Permitir queries mais flexíveis (email, slug, etc.)
+- Alinhar com o padrão do Prisma
+
+### Impacto
+
+- Repositórios recebem objetos `where`
+- Métodos não dependem de `id` diretamente

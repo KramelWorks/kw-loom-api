@@ -170,13 +170,25 @@ protected touch()
 
 ## 🧠 Arquitetura
 
-- `domain` → regras de negócio  
-- `application` → orquestração  
-- `infrastructure` → detalhes externos  
+- `domain` → regras de negócio
+- `application` → orquestração
+- `infrastructure` → detalhes externos
 
 ### Dependências
 
-- Controllers → Use Cases  
-- Use Cases → Domain  
-- Infrastructure → Application/Domain  
-- Domain → não depende de ninguém  
+- Controllers → Use Cases
+- Use Cases → Domain
+- Infrastructure → Application/Domain
+- Domain → não depende de ninguém
+
+## 4. 📏 Regras → **development/coding-standards.md**
+
+👉 só regras, não implementação
+
+```md
+## Repositories
+
+- Devem implementar `IBaseRepository`
+- Não devem conter regras de negócio
+- Devem usar mappers para conversão de dados
+```

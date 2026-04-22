@@ -22,3 +22,24 @@ Use Case
 Domain
    ↓
 Response (AppResult)
+
+## Repositórios
+
+A aplicação utiliza um padrão de repositório genérico para abstrair o acesso a dados.
+
+Os repositórios trabalham com:
+
+- Entidades de domínio
+- Tipos de persistência
+- Critérios de busca (`where`)
+
+Isso permite desacoplamento da camada de infraestrutura.
+
+## Mappers
+
+Responsáveis por converter:
+
+- Domain → Persistence
+- Persistence → Domain
+
+Evita acoplamento entre camadas.
