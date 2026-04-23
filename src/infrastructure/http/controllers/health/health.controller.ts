@@ -1,9 +1,8 @@
 import type { Request, Response } from "express";
-import type { IAppHealthUseCase } from "../../../../application/use-cases/health/contracts/app-health.interface.js";
-
+import type { AppHealthUseCase } from "../../../../application/use-cases/health/app-health.use-case.js";
 export class HealthController{
 
-  constructor(private readonly appHealthUseCase:IAppHealthUseCase) {}
+  constructor(private readonly appHealthUseCase:AppHealthUseCase) {}
 
   public async appHealth(req:Request,res:Response){
     const result=await this.appHealthUseCase.execute(null);

@@ -120,7 +120,10 @@ Uso de uma entidade base para controle de estado.
 
 - Entidades com estado devem estender `BaseEntity`
 - Alterações de estado são controladas internamente
-## Uso de `where` ao invés de `id`
+
+---
+
+## 🔎 Uso de `where` ao invés de `id`
 
 ### Motivação
 
@@ -132,6 +135,9 @@ Uso de uma entidade base para controle de estado.
 
 - Repositórios recebem objetos `where`
 - Métodos não dependem de `id` diretamente
+
+---
+
 ## 📌 Policies
 
 ### Motivação
@@ -154,3 +160,93 @@ Criar policies independentes para:
 - maior flexibilidade
 - regras reutilizáveis
 - leve aumento de complexidade estrutural
+
+---
+
+## 🔍 Query Model
+
+Padroniza a forma como dados são consultados no sistema.
+
+### Motivação
+
+- Separar regras de domínio de preocupações de leitura
+- Evitar acoplamento com banco de dados
+- Manter queries simples e consistentes
+
+---
+
+### Estrutura
+
+As consultas são divididas em três partes:
+
+#### 1. Domain Filters
+
+Representam critérios de busca do domínio.
+
+```ts
+export interface DateRange {
+  from?: Date
+  to?: Date
+}
+
+export interface BaseFilter {
+  createdAt?: DateRange
+  updatedAt?: DateRange
+}
+
+export interface UserFilter extends BaseFilter {
+  name?: string
+  email?: string
+}
+```
+
+Regras:
+
+- Não incluem paginação
+- Não incluem ordenação
+- Representam apenas intenção de busca
+
+---
+
+#### 2. Pagination (Application)
+
+Contrato reutilizável para paginação na camada de aplicação.
+
+```ts
+export interface Pagination {
+  page?: number
+  limit?: number
+}
+```
+
+---
+
+#### 3. Application Query
+
+Combina filtros do domínio com paginação e ordenação.
+
+```ts
+import type { UserFilter } from '../../../domain/contracts/repository/filters/user-filter'
+import type { Pagination } from '../../contracts/pagination.interface'
+
+export interface UserQueryInput extends UserFilter, Pagination {
+  sortBy?: 'name' | 'email' | 'createdAt'
+  order?: 'asc' | 'desc'
+}
+```
+
+---
+
+### Regras gerais
+
+- Domain define filtros
+- Application compõe queries (filtro + paginação + ordenação)
+- Infrastructure executa consultas
+
+---
+
+### Impacto
+
+- Repositórios recebem filtros do domínio
+- Queries reutilizam `Pagination` como contrato comum
+- Controllers utilizam `UserQueryInput` diretamente

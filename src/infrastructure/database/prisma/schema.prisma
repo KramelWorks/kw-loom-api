@@ -10,5 +10,20 @@ generator client {
 
 datasource db {
   provider = "sqlite"
+}
+model UserModel{
+  id            String    @id @default(uuid())
+  isActive      Boolean   @default(true)
+  isDeleted     Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime? @updatedAt
+  deletedAt     DateTime?  
 
+  name          String
+  password      String
+  email         String
+  isLockable    Boolean   @default(true)
+  lockedAt      DateTime?
+  failedLoginAttempts Int @default(0)
+  @@map("user")
 }

@@ -1,9 +1,9 @@
 import { AppResult } from '../../../domain/types/AppResult.js'
 import { AppError } from '../../../shared/error/AppError.js'
-import type { AppStatusDto } from './app-status.dto.js'
-import type { IAppHealthUseCase } from './contracts/app-health.interface.js'
+import type { IUseCase } from '../../contracts/use-case.interface.js'
+import type { AppStatusDto } from './dtos/app-status.dto.js'
 
-export class AppHealthUseCase implements IAppHealthUseCase {
+export class AppHealthUseCase implements IUseCase<null, AppStatusDto> {
   async execute(input: null): Promise<AppResult<AppStatusDto>> {
     try {
       const appStatus: AppStatusDto = {
